@@ -2,9 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Hola Mundo') {
+
+        stage('Build') {
             steps {
-                echo 'Hola desde Jenkins'
+                bat 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Desplegando aplicación en entorno de prueba...'
+
+                // Ejemplo: ejecutar la aplicación
+                bat 'mvn spring-boot:run'
             }
         }
     }
