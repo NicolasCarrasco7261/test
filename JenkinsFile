@@ -5,22 +5,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean compile'
+                echo 'No hay código que compilar (proyecto HTML).'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test'
+                bat 'if exist hola.html (echo Archivo HTML encontrado) else (exit /b 1)'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Desplegando aplicación en entorno de prueba...'
-
-                // Ejemplo: ejecutar la aplicación
-                bat 'mvn spring-boot:run'
+                bat 'start "" hola.html'
             }
         }
     }
